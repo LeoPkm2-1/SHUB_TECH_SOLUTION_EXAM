@@ -81,7 +81,7 @@ app.post("/upload", async (req, res) => {
     }
 });
 
-app.post("/api", fileRoutes);
+app.use("/api", fileRoutes);
 
 /// ======================= test ======================
 
