@@ -1,4 +1,6 @@
 import multer from "multer";
+import path from "path";
+
 import { FILES_LOCATION } from "./../utils/config";
 
 const FILE_STORAGE_CONF: multer.StorageEngine = multer.diskStorage({
