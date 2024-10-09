@@ -31,11 +31,11 @@ CREATE TABLE HangHoa (
 CREATE TABLE TRUBOM(
     ma_tru_bom int NOT NULL,
     ma_tram_xang_quan_ly INT NOT NULL,
-    ma_hang_hoa_cung_cap INT,
-    ten_tru_bom VARCHAR(32) NOT NULL,
+    ma_hang_hoa_cung_cap INT NOT NULL,
+    ten_tru_bom VARCHAR(32),
     mo_ta_tru_bom VARCHAR(100),
-    tong_the_tich DECIMAL(12, 4) NOT NULL,
-    the_tich_con_lai DECIMAL(12, 4) NOT NULL,
+    tong_the_tich DECIMAL(10, 4) NOT NULL,
+    the_tich_con_lai DECIMAL(10, 4) NOT NULL,
     trang_thai_tru_bom VARCHAR(20),
     CONSTRAINT CHK_Trang_thai_tru CHECK (
         trang_thai_tru_bom in (
@@ -64,3 +64,7 @@ CREATE TABLE GiaoDich (
     FOREIGN KEY (ma_hang_hoa) REFERENCES HangHoa(ma_hang_hoa),
     FOREIGN KEY(ma_tru_bom, ma_tram_xang_quan_ly) REFERENCES TRUBOM(ma_tru_bom, ma_tram_xang_quan_ly)
 );
+
+
+
+
