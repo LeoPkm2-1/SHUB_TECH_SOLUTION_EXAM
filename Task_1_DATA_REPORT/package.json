@@ -18,12 +18,14 @@
     "express": "^4.21.1",
     "fs": "^0.0.1-security",
     "multer": "^1.4.5-lts.1",
+    "sqlite3": "^5.1.7",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/multer": "^1.4.12",
     "@types/node": "^22.7.5",
+    "@types/sqlite3": "^3.1.11",
     "@types/uuid": "^10.0.0",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
