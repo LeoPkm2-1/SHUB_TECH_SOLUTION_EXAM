@@ -23,23 +23,23 @@ if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
 }
 
-// Configure Multer storage
-const storage = multer.diskStorage({
-    destination: (req, file, callback) => {
-        // callback(null, "docsSave/");
-        callback(null, `${FILES_LOCATION}/`);
-    },
-    filename(req, file, callback) {
-        console.log(file);
+// // Configure Multer storage
+// const storage = multer.diskStorage({
+//     destination: (req, file, callback) => {
+//         // callback(null, "docsSave/");
+//         callback(null, `${FILES_LOCATION}/`);
+//     },
+//     filename(req, file, callback) {
+//         console.log(file);
 
-        callback(
-            null,
-            Date.now() + file.originalname + path.extname(file.originalname)
-        );
-    },
-});
+//         callback(
+//             null,
+//             Date.now() + file.originalname + path.extname(file.originalname)
+//         );
+//     },
+// });
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
 // // Upload endpoint
 // app.post("/upload", upload.single("file"), (req, res) => {
@@ -50,36 +50,36 @@ const upload = multer({ storage: storage });
 //     res.json(req.file);
 // });
 
-// Upload endpoint
-app.post("/upload", async (req, res) => {
-    try {
-        upload.single("file")(req, res, (err) => {
-            if (err) {
-                // Handle Multer errors (e.g., file size limits)
-                return res.status(500).json({
-                    error: "File upload failed",
-                    details: err.message,
-                });
-            }
+// // Upload endpoint
+// app.post("/upload", async (req, res) => {
+//     try {
+//         upload.single("file")(req, res, (err) => {
+//             if (err) {
+//                 // Handle Multer errors (e.g., file size limits)
+//                 return res.status(500).json({
+//                     error: "File upload failed",
+//                     details: err.message,
+//                 });
+//             }
 
-            if (!req.file) {
-                return res.status(400).json({ error: "No file uploaded." });
-            }
+//             if (!req.file) {
+//                 return res.status(400).json({ error: "No file uploaded." });
+//             }
 
-            // Successful file upload
-            res.status(200).json({
-                message: "File uploaded successfully",
-                filePath: req.file.path,
-            });
-        });
-    } catch (error) {
-        // Handle other errors (e.g., system errors)
-        res.status(500).json({
-            error: "Internal server error",
-            // details: error.message,
-        });
-    }
-});
+//             // Successful file upload
+//             res.status(200).json({
+//                 message: "File uploaded successfully",
+//                 filePath: req.file.path,
+//             });
+//         });
+//     } catch (error) {
+//         // Handle other errors (e.g., system errors)
+//         res.status(500).json({
+//             error: "Internal server error",
+//             // details: error.message,
+//         });
+//     }
+// });
 
 app.use("/api", fileRoutes);
 

@@ -1,6 +1,5 @@
-import { nanoid } from "nanoid";
 import * as path from "path";
-
+import { v4 as uuidv4 } from "uuid";
 export class FileNameUtils {
     static getFileName(filePath: string): string {
         // Parse the file path
@@ -16,7 +15,8 @@ export class FileNameUtils {
     }
 
     static uniqueFileNameGen(): string {
-        const uniqueId: string = nanoid();
-        return uniqueId + `_${Date.now()}`;
+        const uniqueId = uuidv4();
+        const newName = uniqueId.replace(/-/g, "");
+        return newName + `_${Date.now()}`;
     }
 }
