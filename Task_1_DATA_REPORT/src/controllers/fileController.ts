@@ -1,7 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import { UPLOAD_OBJ } from "../models/fileModel";
 import { FileUtiles } from "./../utils/fileUtils";
-import { FILES_LOCATION } from "./../utils/config";
+import {
+    FILES_LOCATION,
+    ERROR_TYPE_FILE_UP_NOT_XLSX_OR_XLS,
+    ERROR_TYPE_FILE_UP_NOT_XLSX,
+} from "./../utils/config";
 export const uploadFileControler = (
     req: Request,
     res: Response,
@@ -10,6 +14,14 @@ export const uploadFileControler = (
     try {
         UPLOAD_OBJ.single("file")(req, res, (err) => {
             if (err) {
+                // file's content-type uploaded not allowed
+                if (err.message == ERROR_TYPE_FILE_UP_NOT_XLSX) {
+                    return res.status(400).json({
+                        error: "File upload failed",
+                        details: err.message,
+                    });
+                }
+
                 // upload file error
                 return res.status(500).json({
                     error: "File upload failed",
