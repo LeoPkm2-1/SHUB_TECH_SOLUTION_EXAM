@@ -68,38 +68,52 @@ Dưới đây sẽ là mô tả chi tiết của các API:
 
     Để tiện lợi hơn trong việc test API, bạn có thể sử dụng công cụ [postman](https://www.postman.com/) và nạp file [postman_collection này](./asset/postman/Shub_test_entry.postman_collection.json) để test
 
-
 #### 2. API LẤY TỔNG DOANH THU TRONG 1 KHOẢNG THỜI GIAN :
 
 -   2.1 Đường dẫn của API:
     `http://localhost:3000/api/queryRevenue`
 
 -   2.2 Phương thức: `POST`
-  
+
 -   2.3 Header của gói tin:
 
     -   Content-Type: `application/x-www-form-urlencoded`
     -   Connection: `keep-alive`
 
-
 -   2.4 Tham số :
 
     -   **_username_** là tham số Có kiểu là _Text_, giá trị của nó là một chuỗi không dấu mô tả người sở hữu của file tải lên.
 
+    -   **_startTime_** Là tham số mô tả thời điểm bắt đầu tính doanh thu. Giá trị có là chuỗi mô tả thời gian _(24h)_ theo định dạng `HH:mm:ss`
 
-    - ***startTime*** Là tham số mô tả thời điểm bắt đầu tính doanh thu. Giá trị có là chuỗi mô tả thời gian *(24h)* theo định dạng `HH:mm:ss`
-  
-    - ***endTime*** Là tham số mô tả thời điểm kết thúc của khoảng thời gian tính doanh thu. Giá trị có là chuỗi mô tả thời gian *(24h)* theo định dạng `HH:mm:ss`
+    -   **_endTime_** Là tham số mô tả thời điểm kết thúc của khoảng thời gian tính doanh thu. Giá trị có là chuỗi mô tả thời gian _(24h)_ theo định dạng `HH:mm:ss`
 
-    Doanh thu sẽ được tính trong khoảng thời gian `startTime <=time <=endTime` *(tính cả 2 đầu mút)*
-
+    Doanh thu sẽ được tính trong khoảng thời gian `startTime <=time <=endTime` _(tính cả 2 đầu mút)_
 
 -   2.5 Giới hạn:
 
-    API sẽ trả vễ lỗi nếu như *định dạng thời gian không đúng*, hoặc mô tả *khoảng thời gian không hợp lệ* và cả trong trường hợp người dùng có `username` được mô tả trước đó *chưa tải file lên*
-
+    API sẽ trả vễ lỗi nếu như _định dạng thời gian không đúng_, hoặc mô tả _khoảng thời gian không hợp lệ_ và cả trong trường hợp người dùng có `username` được mô tả trước đó _chưa tải file lên_
 
 -   2.6 Chú ý:
 
     Để tiện lợi hơn trong việc test API, bạn có thể sử dụng công cụ [postman](https://www.postman.com/) và nạp file [postman_collection này](./asset/postman/Shub_test_entry.postman_collection.json) để test
+
+### 4️⃣ THÔNG TIN CHI TIẾT VỀ MÃ NGUỒN
+
+#### 1. Công nghệ sử dụng:
+
+- [Typescript 🇹🇸](https://www.typescriptlang.org/)
+- [Nodejs](https://nodejs.org/en)
+- [sqlite](https://www.sqlite.org/)
+
+#### 2. Cấu trúc chương trình:
+
+- `database`:  Thư mục lưu chữ database sqlite
+- `src`: Thư mục lưu trữ mã nguồn
+  
+  - *server.ts*: file entry
+  - *routes*: thư mục để quản lý luồng riêng biệt cho từng API
+  - *middleware*: thư mục lưu trữ các tiền xử lý cho các API (validation…)
+  - *models*: Thư mục lưu trữ các thành phần tương tác lấy dữ liệu từ database
+  - *controllers*: Thư mục xử lý chính, có nhiệm vụ xử lý và trả về phản hồi cho người dùng
 
