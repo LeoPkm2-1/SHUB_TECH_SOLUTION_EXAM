@@ -12,7 +12,7 @@ export class UserModel {
         return new Promise((resolve, reject) => {
             db.get(
                 `SELECT 1 FROM ${USER_FILE_TABLE_NAME} WHERE username = ? LIMIT 1`,
-                [username],
+                [username.toLowerCase()],
                 (err, row) => {
                     if (err) {
                         console.error(
@@ -32,7 +32,7 @@ export class UserModel {
         const dbManipulate = new DatabaseHandler();
         await dbManipulate.runQuery(
             `INSERT INTO ${USER_FILE_TABLE_NAME} (username, filename) VALUES (?, ?)`,
-            [username, fileName]
+            [username.toLowerCase(), fileName]
         );
     }
 
@@ -40,7 +40,7 @@ export class UserModel {
         const dbManipulate = new DatabaseHandler();
         await dbManipulate.runQuery(
             `UPDATE ${USER_FILE_TABLE_NAME} SET filename = ? WHERE username = ?`,
-            [updateFileName, username]
+            [updateFileName, username.toLowerCase()]
         );
     }
 
@@ -51,7 +51,7 @@ export class UserModel {
             return await new Promise<string | undefined>((resolve, reject) => {
                 db.get(
                     `SELECT filename FROM ${USER_FILE_TABLE_NAME} WHERE username = ?`,
-                    [username],
+                    [username.toLowerCase()],
                     (err, row: User_File_Row_InterFace) => {
                         dbManipulate.closeDB(db); // Close the connection after the query
 

@@ -5,11 +5,9 @@ import path from "path";
 import fs from "fs";
 
 import { FILES_LOCATION } from "./utils/config";
-import initDatabase from './models/database';
+import initDatabase from "./models/database";
 import userRoutes from "./routes/userRoutes";
 import fileRoutes from "./routes/fileRoutes";
-
-
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,8 +17,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded());
 // parse application/json
 app.use(bodyParser.json());
-
-
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Create uploads directory if it doesn't exist
 const dir = `./${FILES_LOCATION}`;
@@ -29,9 +26,9 @@ if (!fs.existsSync(dir)) {
 }
 
 app.use("/api", fileRoutes);
-
+app.use("/api", userRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
-    initDatabase(); 
+    initDatabase();
 });
