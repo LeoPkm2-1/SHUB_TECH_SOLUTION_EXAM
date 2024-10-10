@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import path from "path";
 import fs from "fs";
 
-import { FILES_LOCATION } from "./utils/config";
+import { FILES_LOCATION,DATABASE_FOLDER_LOCATION } from "./utils/config";
 import initDatabase from "./models/database";
 import userRoutes from "./routes/userRoutes";
 import fileRoutes from "./routes/fileRoutes";
@@ -24,6 +24,12 @@ app.use(bodyParser.json());
 const dir = `./${FILES_LOCATION}`;
 if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
+}
+
+// Create database directory if it doesn't exist
+const dbdir = `./${DATABASE_FOLDER_LOCATION}`;
+if (!fs.existsSync(dbdir)) {
+    fs.mkdirSync(dbdir);
 }
 
 app.use("/api", fileRoutes);

@@ -3,6 +3,7 @@ import { UserModel } from "../models/userModel";
 import { FileUtiles } from "../utils/fileUtils";
 import { FILES_LOCATION } from "../utils/config";
 
+// upload file handler
 export const userUpFileController = async (
     req: Request,
     res: Response,
@@ -32,6 +33,7 @@ export const userUpFileController = async (
     }
 };
 
+// get user infor handler
 export const userInforController = async (
     req: Request,
     res: Response,

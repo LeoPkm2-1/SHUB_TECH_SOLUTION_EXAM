@@ -4,7 +4,7 @@ import { queryHandleController } from "../controllers/queryController";
 
 const router = Router();
 
-// query data router
+// router to query Revenue from startTime to endTime
 router.post("/queryRevenue", queryRevenueMid(), queryHandleController);
 
 export default router;

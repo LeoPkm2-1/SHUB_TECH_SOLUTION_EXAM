@@ -6,6 +6,7 @@ interface User_File_Row_InterFace {
     filename: string;
 }
 export class UserModel {
+    // check user existed in database
     isUserExisted(username: string): Promise<boolean> {
         const dbManipulate = new DatabaseHandler();
         const db = dbManipulate.getConnector();
@@ -28,6 +29,8 @@ export class UserModel {
             dbManipulate.closeDB(db); // Close the connection after the check
         });
     }
+
+    // insert user and their file name into database
     async insertDataIntoUserFileTable(username: string, fileName: string) {
         const dbManipulate = new DatabaseHandler();
         await dbManipulate.runQuery(
@@ -36,6 +39,7 @@ export class UserModel {
         );
     }
 
+    // update filename of user
     async updateFileNameOfUser(username: string, updateFileName: string) {
         const dbManipulate = new DatabaseHandler();
         await dbManipulate.runQuery(
@@ -44,6 +48,7 @@ export class UserModel {
         );
     }
 
+    // get filename of user
     async getFilenameByUsername(username: string): Promise<string | undefined> {
         const dbManipulate = new DatabaseHandler();
         const db = dbManipulate.getConnector();

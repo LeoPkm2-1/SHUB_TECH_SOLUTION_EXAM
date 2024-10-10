@@ -1,11 +1,17 @@
 import { Request, Response, NextFunction } from "express";
 import ExcelJS from "exceljs";
-import { type TransactionType, FILES_LOCATION, HEADER_ROW_NUMBER } from "./../utils/config";
+import {
+    type TransactionType,
+    FILES_LOCATION,
+    HEADER_ROW_NUMBER,
+} from "./../utils/config";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { TimeUtils } from "../utils/timeUtils";
 
 dayjs.extend(customParseFormat);
+
+// Revenue query handler
 export const queryHandleController = async (
     req: Request,
     res: Response,

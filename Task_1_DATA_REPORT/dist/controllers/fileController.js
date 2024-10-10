@@ -1,43 +1,35 @@
-import { Request, Response, NextFunction } from "express";
-import { UPLOAD_OBJ } from "../models/fileModel";
-import { FileUtiles } from "./../utils/fileUtils";
-import {
-    FILES_LOCATION,
-    ERROR_TYPE_FILE_UP_NOT_XLSX_OR_XLS,
-    ERROR_TYPE_FILE_UP_NOT_XLSX,
-} from "./../utils/config";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.uploadFileControler = void 0;
+const fileModel_1 = require("../models/fileModel");
+const fileUtils_1 = require("./../utils/fileUtils");
+const config_1 = require("./../utils/config");
 // upload file handler
-export const uploadFileControler = (
-    req: Request,
-    res: Response,
-    next: NextFunction
-) => {
+const uploadFileControler = (req, res, next) => {
     try {
-        UPLOAD_OBJ.single("file")(req, res, (err) => {
+        fileModel_1.UPLOAD_OBJ.single("file")(req, res, (err) => {
+            var _a;
             if (err) {
                 // file's content-type uploaded not allowed
-                if (err.message == ERROR_TYPE_FILE_UP_NOT_XLSX) {
+                if (err.message == config_1.ERROR_TYPE_FILE_UP_NOT_XLSX) {
                     return res.status(400).json({
                         error: "File upload failed",
                         details: err.message,
                     });
                 }
-
                 // upload file error
                 return res.status(500).json({
                     error: "File upload failed",
                     details: err.message,
                 });
             }
-
             if (!req.file) {
                 // no file upload
                 return res.status(400).json({ error: "No file uploaded." });
             }
-            let username: string | undefined = req.body.username ?? undefined;
+            let username = (_a = req.body.username) !== null && _a !== void 0 ? _a : undefined;
             if (typeof username === "undefined") {
-                FileUtiles.deleteFile(`${FILES_LOCATION}/${req.file.filename}`); // delete file if not found its owner
+                fileUtils_1.FileUtiles.deleteFile(`${config_1.FILES_LOCATION}/${req.file.filename}`); // delete file if not found its owner
                 return res
                     .status(400)
                     .json({ error: "Not found username value" });
@@ -50,10 +42,12 @@ export const uploadFileControler = (
                 // filePath: req.file.filename,
             });
         });
-    } catch (error) {
+    }
+    catch (error) {
         // Handle other errors (e.g., system errors)
         res.status(500).json({
             error: "Internal server error",
         });
     }
 };
+exports.uploadFileControler = uploadFileControler;

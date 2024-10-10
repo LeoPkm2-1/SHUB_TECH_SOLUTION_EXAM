@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.HEADER_ROW_NUMBER = exports.ERROR_TYPE_FILE_UP_NOT_XLSX = exports.ERROR_TYPE_FILE_UP_NOT_XLSX_OR_XLS = exports.USER_FILE_TABLE_NAME = exports.DATABASE_FILENAME = exports.DATABASE_FOLDER_LOCATION = exports.FILES_LOCATION = void 0;
+exports.FILES_LOCATION = "docsSave";
+exports.DATABASE_FOLDER_LOCATION = "database";
+exports.DATABASE_FILENAME = "data.db";
+exports.USER_FILE_TABLE_NAME = "USER_FILE";
+exports.ERROR_TYPE_FILE_UP_NOT_XLSX_OR_XLS = "Only .xlsx and .xls files are allowed";
+exports.ERROR_TYPE_FILE_UP_NOT_XLSX = "Only .xlsx files are allowed";
+exports.HEADER_ROW_NUMBER = 8;

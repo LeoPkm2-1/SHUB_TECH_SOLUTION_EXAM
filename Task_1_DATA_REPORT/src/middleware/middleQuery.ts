@@ -3,6 +3,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import { UserModel } from "../models/userModel";
 import { TimeUtils } from "../utils/timeUtils";
 
+
 interface Query_Data_Struture {
     username: string | undefined;
     filename: string | undefined;
@@ -10,6 +11,7 @@ interface Query_Data_Struture {
     endTime: string;
 }
 
+//  user exist Handle Middleware
 export const userExistMid = async (
     req: Request,
     res: Response,
@@ -40,6 +42,7 @@ export const userExistMid = async (
     next();
 };
 
+// file exist Handle Middleware
 export const fileExistMid = async (
     req: Request,
     res: Response,
@@ -59,6 +62,7 @@ export const fileExistMid = async (
     next();
 };
 
+// time handle Middleware
 export const timeValidMid = (
     req: Request,
     res: Response,
@@ -104,4 +108,5 @@ export const timeValidMid = (
     }
 };
 
+// list of middlewares to pre-process query revenue
 export const queryRevenueMid = () => [userExistMid, fileExistMid, timeValidMid];

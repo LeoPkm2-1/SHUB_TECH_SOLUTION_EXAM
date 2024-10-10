@@ -53,6 +53,7 @@ export class DatabaseHandler {
     }
 }
 
+// init Database table
 const initDb = async () => {
     try {
         new DatabaseHandler().runQuery(
@@ -67,58 +68,3 @@ const initDb = async () => {
     }
 };
 export default initDb;
-
-// // Open the database connection
-// export const connectToDB = (): sqlite3.Database => {
-//     const db = new sqlite3.Database(DATABASE_PATH, (err) => {
-//         if (err) {
-//             console.error("Error opening database:", err.message);
-//         } else {
-//             console.log("Connected to the SQLite database.");
-//         }
-//     });
-//     return db;
-// };
-
-// // Close database connection
-// export const closeDB = (db: sqlite3.Database): void => {
-//     db.close((err) => {
-//         if (err) {
-//             console.error("Error closing the database:", err.message);
-//         } else {
-//             console.log("Database connection closed.");
-//         }
-//     });
-// };
-
-// // Function to run a query (Insert/Update/Delete)
-// export const runQuery = (query: string, params: any[] = []): Promise<void> => {
-//     const db = connectToDB();
-//     return new Promise((resolve, reject) => {
-//         db.run(query, params, function (err) {
-//             if (err) {
-//                 console.error("Error running query:", err.message);
-//                 reject(err);
-//             } else {
-//                 resolve();
-//             }
-//         });
-//         closeDB(db); // Close the connection after the query is done
-//     });
-// };
-
-// // Function to retrieve data (SELECT)
-// export const getAll = <T>(query: string, params: any[] = []): Promise<T[]> => {
-//     const db = connectToDB();
-//     return new Promise((resolve, reject) => {
-//         db.all(query, params, (err, rows) => {
-//             if (err) {
-//                 console.error("Error fetching data:", err.message);
-//                 reject(err);
-//             } else {
-//                 resolve(rows as T[]);
-//             }
-//         });
-//         closeDB(db); // Close the connection after data is retrieved
-//     });
-// };

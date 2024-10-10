@@ -6,7 +6,9 @@ export class FileNameUtils {
         // Parse the file path
         return path.basename(filePath);
     }
+
     static getFileNameWithoutExt(filePath: string): string {
+        // get file name without extention
         // Parse the file path
         const parsedPath = path.parse(filePath);
 
@@ -16,6 +18,7 @@ export class FileNameUtils {
     }
 
     static uniqueFileNameGen(): string {
+        // create unique File name
         const uniqueId = uuidv4();
         const newName = uniqueId.replace(/-/g, "");
         return newName + `_${Date.now()}`;
