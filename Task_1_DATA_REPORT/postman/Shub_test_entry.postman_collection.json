@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "9c989c00-6eac-4c45-8fb4-98c65cebf481",
+		"name": "Shub_test_entry",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21170529"
+	},
+	"item": [
+		{
+			"name": "upload_api",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/E:/User_Data/Downloads/đề bài test_report.xlsx"
+						},
+						{
+							"key": "username",
+							"value": "teo em",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "queryRevenue",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "teo em",
+							"type": "text"
+						},
+						{
+							"key": "startTime",
+							"value": "20:59:22",
+							"type": "text"
+						},
+						{
+							"key": "endTime",
+							"value": "23:08:00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/queryRevenue",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"queryRevenue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_infor",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "ahihi",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/usersInfor?username=teo em",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"usersInfor"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "teo em"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
